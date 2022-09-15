@@ -6,7 +6,7 @@
 /*   By: ysay <ysay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:22:56 by ysay              #+#    #+#             */
-/*   Updated: 2022/09/15 12:40:55 by ysay             ###   ########.fr       */
+/*   Updated: 2022/09/15 12:50:14 by ysay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	print_list(const argv_t *list, t_ls *ls);
 
 int		open_br(t_ls *ls, argv_t *list);
 int		open_dir(t_ls *ls, int flag, int flag2);
-
 
 t_ls	*ls_dup(const t_ls *ls, char *str);
 char	*get_attr(char *path);
