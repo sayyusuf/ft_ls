@@ -1,7 +1,7 @@
 
 NAME = ft_ls
 
-_SRC = main.c
+_SRC = main.c dir.c print.c perm.c sort.c destroy.c set.c
 
 _OBJ = $(_SRC:.c=.o)
 _EXLIB = libft.a
