@@ -6,15 +6,15 @@
 /*   By: ysay <ysay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:52:04 by ysay              #+#    #+#             */
-/*   Updated: 2022/09/14 23:43:46 by ysay             ###   ########.fr       */
+/*   Updated: 2022/09/15 17:09:26 by ysay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-argv_t	*l_operation(const argv_t *list, t_ls *ls)
+t_argv	*l_operation(const t_argv *list, t_ls *ls)
 {
-	argv_t		*nlist;
+	t_argv		*nlist;
 	t_info		*info;
 	struct stat	st;
 	size_t		i;
@@ -36,7 +36,7 @@ argv_t	*l_operation(const argv_t *list, t_ls *ls)
 	return (nlist);
 }
 
-void	look_algn(size_t *alg, argv_t *list)
+void	look_algn(size_t *alg, t_argv *list)
 {
 	size_t	i;
 	t_info	*inf;
@@ -83,7 +83,7 @@ char	*algn_str(size_t len, char *str, int back_flag)
 	return (ret);
 }
 
-void	do_algn(size_t *alg, argv_t *list)
+void	do_algn(size_t *alg, t_argv *list)
 {
 	size_t	i;
 	t_info	*inf;
@@ -102,11 +102,11 @@ void	do_algn(size_t *alg, argv_t *list)
 	}
 }
 
-void	print_list(const argv_t *list, t_ls *ls)
+void	print_list(const t_argv *list, t_ls *ls)
 {
 	size_t	i;
 	t_info	*inf;
-	argv_t	*nlist;
+	t_argv	*nlist;
 	size_t	*algn;
 
 	algn = (size_t [6]){0};

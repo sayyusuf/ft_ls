@@ -6,13 +6,13 @@
 /*   By: ysay <ysay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:31:16 by ysay              #+#    #+#             */
-/*   Updated: 2022/09/15 11:21:44 by ysay             ###   ########.fr       */
+/*   Updated: 2022/09/15 17:09:26 by ysay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int	set_flags(argv_t *argv, t_ls *ls)
+int	set_flags(t_argv *argv, t_ls *ls)
 {
 	size_t	i;
 	char	*str;
@@ -60,10 +60,10 @@ int	init_flags(char *target, t_ls *ls)
 	return (1);
 }
 
-argv_t	*set_target(argv_t *argv, t_ls *ls)
+t_argv	*set_target(t_argv *argv, t_ls *ls)
 {
 	size_t	i;
-	argv_t	*ret;
+	t_argv	*ret;
 
 	i = 0;
 	ret = argv_new(NULL, NULL);

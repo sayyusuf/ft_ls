@@ -6,19 +6,19 @@
 /*   By: ysay <ysay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:44:25 by ysay              #+#    #+#             */
-/*   Updated: 2022/09/15 12:45:21 by ysay             ###   ########.fr       */
+/*   Updated: 2022/09/15 17:09:26 by ysay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-argv_t	*sort_time(argv_t *list)
+t_argv	*sort_time(t_argv *list)
 {
 	struct stat		st;
 	long int		time;
 	size_t			index;
 	size_t			i;
-	argv_t			*nlist;
+	t_argv			*nlist;
 
 	nlist = argv_new(NULL, NULL);
 	while (list->len)
@@ -74,12 +74,12 @@ int	cmp(char *s1, char *s2)
 	return (ret);
 }
 
-argv_t	*sort_name(argv_t *list)
+t_argv	*sort_name(t_argv *list)
 {
 	char			*name;
 	size_t			index;
 	size_t			i;
-	argv_t			*nlist;
+	t_argv			*nlist;
 
 	nlist = argv_new(NULL, NULL);
 	while (list->len)
@@ -103,9 +103,9 @@ argv_t	*sort_name(argv_t *list)
 	return (nlist);
 }
 
-argv_t	*sort_proc(t_ls *ls, argv_t *list)
+t_argv	*sort_proc(t_ls *ls, t_argv *list)
 {
-	argv_t	*ret;
+	t_argv	*ret;
 
 	ret = sort_name(list);
 	if (ls->t_flag)

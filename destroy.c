@@ -6,7 +6,7 @@
 /*   By: ysay <ysay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:38:37 by ysay              #+#    #+#             */
-/*   Updated: 2022/09/15 12:46:04 by ysay             ###   ########.fr       */
+/*   Updated: 2022/09/15 17:09:26 by ysay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ls_destroy(t_ls *ls)
 	free(ls);
 }
 
-void	del_hidden(argv_t *list)
+void	del_hidden(t_argv *list)
 {
 	size_t	i;
 	char	*s;
@@ -47,7 +47,7 @@ void	del_hidden(argv_t *list)
 	}
 }
 
-void	clear_redir(argv_t *list)
+void	clear_redir(t_argv *list)
 {
 	size_t	i;
 
@@ -60,7 +60,7 @@ void	clear_redir(argv_t *list)
 			i++;
 }
 
-void	clear_notdir(argv_t *list)
+void	clear_notdir(t_argv *list)
 {
 	size_t			i;
 	struct stat		st;

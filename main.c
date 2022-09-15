@@ -6,7 +6,7 @@
 /*   By: ysay <ysay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 15:24:26 by ysay              #+#    #+#             */
-/*   Updated: 2022/09/15 12:48:25 by ysay             ###   ########.fr       */
+/*   Updated: 2022/09/15 17:09:26 by ysay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ void	set_info(t_info *info, char *path, struct stat st, char *name)
 //traRL
 int	main(int ac, char *av[], char *env[])
 {
-	argv_t	*argv;
+	t_argv	*argv;
 	t_ls	ls;
-	argv_t	*targ;
+	t_argv	*targ;
 	int		flag;
 	size_t	i;
 

@@ -3,21 +3,31 @@ NAME = ft_ls
 
 _SRC = main.c dir.c print.c perm.c sort.c destroy.c set.c
 
+_SRC2 = array.c array_insert.c array_del.c array_utils.c array_copy.c  argv.c argv_utils.c argv_insert.c argv_del.c
+
 _OBJ = $(_SRC:.c=.o)
+_OBJ2 = $(_SRC2:.c=.o)
+
 _EXLIB = libft.a
-_EXLIB2 = argv.a
 _IDIR = ./ ./libft ./argv_lib
 
 SDIR = 
-ODIR = 
+ODIR =
+
+SDIR2 = argv_lib/ 
+ODIR2 =  argv_lib/
+
 EXLIBD = libft/
-EXLIBD2 = argv_lib/
+
 IFLAG = -I
 
 SRC = $(patsubst %, $(SDIR)%, $(_SRC))
 OBJ = $(patsubst %, $(ODIR)%, $(_OBJ))
+
+SRC2 = $(patsubst %, $(SDIR2)%, $(_SRC2))
+OBJ2 = $(patsubst %, $(ODIR2)%, $(_OBJ2))
+
 EXLIB = $(patsubst %, $(EXLIBD)%, $(_EXLIB))
-EXLIB2 = $(patsubst %, $(EXLIBD2)%, $(_EXLIB2))
 INC = $(patsubst %, $(IFLAG)%, $(_IDIR))
 
 CC = gcc
@@ -26,12 +36,12 @@ FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 .PHONY: all clean fclean re
 
-all: $(EXLIB) $(EXLIB2) $(NAME)
+all: $(EXLIB) $(NAME)
 
 
 
-$(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(INC) $(OBJ) $(EXLIB) $(EXLIB2) -o $(NAME)
+$(NAME): $(OBJ) $(OBJ2)
+	$(CC) $(FLAGS) $(INC) $(OBJ) $(OBJ2) $(EXLIB) $(EXLIB2) -o $(NAME)
 
 $(ODIR)%.o : $(SDIR)%.c 
 	$(CC) $(FLAGS) $(INC) -c  $< -o $@
@@ -40,17 +50,13 @@ $(ODIR)%.o : $(SDIR)%.c
 $(EXLIB):
 	make -C $(EXLIBD)
 
-$(EXLIB2):
-	make -C $(EXLIBD2)
-
 clean:
 	rm -rf $(OBJ)
+	rm -rf $(OBJ2)
 	make clean -C $(EXLIBD)
-	make clean -C $(EXLIBD2)
 
 fclean: clean
 	rm -rf $(NAME)
 	make fclean -C $(EXLIBD)
-	make fclean -C $(EXLIBD2)
 
 re: fclean all

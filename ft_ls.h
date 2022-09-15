@@ -6,7 +6,7 @@
 /*   By: ysay <ysay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:22:56 by ysay              #+#    #+#             */
-/*   Updated: 2022/09/15 12:50:14 by ysay             ###   ########.fr       */
+/*   Updated: 2022/09/15 17:09:26 by ysay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,23 @@ typedef struct s_info
 
 int		main(int ac, char *av[], char *env[]);
 
-int		set_flags(argv_t *argv, t_ls *ls);
+int		set_flags(t_argv *argv, t_ls *ls);
 int		init_flags(char *target, t_ls *ls);
-argv_t	*set_target(argv_t *argv, t_ls *ls);
+t_argv	*set_target(t_argv *argv, t_ls *ls);
 char	*make_flags(t_ls *ls);
 char	*ft_str3join(char *s1, char *s2, char *s3);
 
 void	info_destrtoy(t_info *info);
 void	ls_destroy(t_ls *ls);
-void	del_hidden(argv_t *list);
-void	clear_redir(argv_t *list);
-void	clear_notdir(argv_t *list);
+void	del_hidden(t_argv *list);
+void	clear_redir(t_argv *list);
+void	clear_notdir(t_argv *list);
 
-argv_t	*sort_time(argv_t *list);
+t_argv	*sort_time(t_argv *list);
 void	all_low(char *s);
 int		cmp(char *s1, char *s2);
-argv_t	*sort_name(argv_t *list);
-argv_t	*sort_proc(t_ls *ls, argv_t *list);
+t_argv	*sort_name(t_argv *list);
+t_argv	*sort_proc(t_ls *ls, t_argv *list);
 
 char	get_type(const char *str);
 void	bit_set_user(struct stat *st, char *s);
@@ -76,13 +76,13 @@ void	bit_set_group(struct stat *st, char *s);
 void	bit_set_other(struct stat *st, char *s);
 char	*get_permission(const char *name);
 
-argv_t	*l_operation(const argv_t *list, t_ls *ls);
-void	look_algn(size_t *alg, argv_t *list);
+t_argv	*l_operation(const t_argv *list, t_ls *ls);
+void	look_algn(size_t *alg, t_argv *list);
 char	*algn_str(size_t len, char *str, int back_flag);
-void	do_algn(size_t *alg, argv_t *list);
-void	print_list(const argv_t *list, t_ls *ls);
+void	do_algn(size_t *alg, t_argv *list);
+void	print_list(const t_argv *list, t_ls *ls);
 
-int		open_br(t_ls *ls, argv_t *list);
+int		open_br(t_ls *ls, t_argv *list);
 int		open_dir(t_ls *ls, int flag, int flag2);
 
 t_ls	*ls_dup(const t_ls *ls, char *str);

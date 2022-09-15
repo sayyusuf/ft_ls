@@ -6,15 +6,15 @@
 /*   By: ysay <ysay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:56:02 by ysay              #+#    #+#             */
-/*   Updated: 2022/09/15 12:47:55 by ysay             ###   ########.fr       */
+/*   Updated: 2022/09/15 17:11:29 by ysay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int	open_br(t_ls *ls, argv_t *list)
+int	open_br(t_ls *ls, t_argv *list)
 {
-	argv_t	*nlist;
+	t_argv	*nlist;
 
 	clear_redir(list);
 	nlist = argv_new(NULL, NULL);
@@ -33,7 +33,7 @@ int	open_br(t_ls *ls, argv_t *list)
 	return (0);
 }
 
-void	look_nl(argv_t *list, t_ls *ls, int flag, int flag2)
+void	look_nl(t_argv *list, t_ls *ls, int flag, int flag2)
 {
 	if ((flag || ls->br_flag) && flag2)
 		ft_printf("\n");
@@ -44,7 +44,6 @@ void	look_nl(argv_t *list, t_ls *ls, int flag, int flag2)
 
 int	error_masg(t_ls *ls)
 {
-	ft_printf("%d\n", errno);
 	if (errno == 13)
 		ft_printf("ft_ls: cannot open directory '%s': %s\n",
 			ls->name, strerror(errno));
@@ -58,7 +57,7 @@ int	open_dir(t_ls *ls, int flag, int flag2)
 {
 	DIR				*dir;
 	struct dirent	*dd;
-	argv_t			*list;
+	t_argv			*list;
 
 	dir = opendir(ls->name);
 	if (dir == NULL)
