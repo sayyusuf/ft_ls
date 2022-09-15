@@ -6,7 +6,7 @@
 /*   By: ysay <ysay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:31:16 by ysay              #+#    #+#             */
-/*   Updated: 2022/09/15 17:09:26 by ysay             ###   ########.fr       */
+/*   Updated: 2022/09/15 17:58:54 by ysay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	set_flags(t_argv *argv, t_ls *ls)
 		if (*str == '-')
 		{
 			if (!init_flags(&str[1], ls))
+			{
+				argv_destroy(argv, free);
 				return (-1);
+			}
 			argv_del_one(argv, i, free);
 		}
 		else
@@ -51,7 +54,7 @@ int	init_flags(char *target, t_ls *ls)
 			ls->l_flag = 1;
 		else
 		{
-			ft_printf("ls: invalid option -- '%c'\n", *target);
+			ft_printf("ft_ls: invalid option -- '%c'\n", *target);
 			ft_printf("Try 'ls --help' for more information.\n");
 			return (0);
 		}
