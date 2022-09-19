@@ -14,8 +14,8 @@ _IDIR = ./ ./libft ./argv_lib
 SDIR = 
 ODIR =
 
-SDIR2 = argv_lib/ 
-ODIR2 =  argv_lib/
+SDIR2 = argv 
+ODIR2 =  argv/
 
 EXLIBD = libft/
 
