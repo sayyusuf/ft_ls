@@ -56,7 +56,7 @@ void	set_info(t_info *info, char *path, struct stat st, char *name)
 	info->attr = get_attr(path);
 	info->perm = get_permission(path);
 	info->link_count = ft_itoa(st.st_nlink);
-	info->date = get_time(st.st_atime);
+	info->date = get_time(st.st_mtime);
 	info->size = ft_itoa(st.st_size);
 	info->user = ft_strdup(getpwuid(st.st_uid)->pw_name);
 	info->group = ft_strdup(getgrgid(st.st_gid)->gr_name);

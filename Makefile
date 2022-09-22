@@ -32,7 +32,7 @@ INC = $(patsubst %, $(IFLAG)%, $(_IDIR))
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 
 .PHONY: all clean fclean re
 
