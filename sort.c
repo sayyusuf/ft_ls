@@ -6,7 +6,7 @@
 /*   By: ysay <ysay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:44:25 by ysay              #+#    #+#             */
-/*   Updated: 2022/09/15 17:09:26 by ysay             ###   ########.fr       */
+/*   Updated: 2022/09/22 16:23:42 by ysay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_argv	*sort_time(t_argv *list)
 {
 	struct stat		st;
-	long int		time;
+	struct timeval	t;
 	size_t			index;
 	size_t			i;
 	t_argv			*nlist;
@@ -25,13 +25,15 @@ t_argv	*sort_time(t_argv *list)
 	{
 		i = 0;
 		index = 0;
-		time = 0;
+		t = (struct timeval){0};
 		while (i < list->len)
 		{
-			stat(list->array[i++], &st);
-			if (st.st_mtime >= time)
+			lstat(list->array[i++], &st);
+			if (st.st_mtime > t.tv_sec || (st.st_mtime == t.tv_sec
+					&& st.st_mtimespec.tv_nsec / 1000 > t.tv_usec))
 			{
-				time = st.st_mtime;
+				t.tv_sec = st.st_mtimespec.tv_sec;
+				t.tv_usec = st.st_mtimespec.tv_sec / 1000;
 				index = i - 1;
 			}
 		}
@@ -39,15 +41,6 @@ t_argv	*sort_time(t_argv *list)
 		argv_del_one(list, index, NULL);
 	}
 	return (nlist);
-}
-
-void	all_low(char *s)
-{
-	while (*s)
-	{
-		*s = ft_tolower(*s);
-		s++;
-	}
 }
 
 int	cmp(char *s1, char *s2)
@@ -62,11 +55,6 @@ int	cmp(char *s1, char *s2)
 	i2 = 0;
 	t1 = ft_strdup(s1);
 	t2 = ft_strdup(s2);
-
-	if (*t1 == '.')
-		i1 = 1;
-	if (*t2 == '.')
-		i2 = 1;
 	ret = strcmp(&t1[i1], &t2[i2]);
 	free(t1);
 	free(t2);

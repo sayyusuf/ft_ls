@@ -6,7 +6,7 @@
 /*   By: ysay <ysay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:22:56 by ysay              #+#    #+#             */
-/*   Updated: 2022/09/15 17:09:26 by ysay             ###   ########.fr       */
+/*   Updated: 2022/09/22 16:22:49 by ysay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	clear_redir(t_argv *list);
 void	clear_notdir(t_argv *list);
 
 t_argv	*sort_time(t_argv *list);
-void	all_low(char *s);
 int		cmp(char *s1, char *s2);
 t_argv	*sort_name(t_argv *list);
 t_argv	*sort_proc(t_ls *ls, t_argv *list);

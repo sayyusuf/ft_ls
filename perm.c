@@ -9,10 +9,13 @@
 /*   Updated: 2022/09/22 15:32:02 by ysay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "ft_ls.h"
+
 char	get_type(const char *str)
 {
 	struct stat	st;
+
 	lstat(str, &st);
 	if ((st.st_mode & S_IFMT) == S_IFBLK)
 		return ('b');
@@ -28,6 +31,7 @@ char	get_type(const char *str)
 		return ('l');
 	return ('-');
 }
+
 void	bit_set_user(struct stat *st, char *s)
 {
 	if ((st->st_mode & S_IRWXU) & S_IRUSR)
@@ -47,6 +51,7 @@ void	bit_set_user(struct stat *st, char *s)
 	else
 		s[2] = '-';
 }
+
 void	bit_set_group(struct stat *st, char *s)
 {
 	if ((st->st_mode & S_IRWXG) & S_IRGRP)
@@ -66,6 +71,7 @@ void	bit_set_group(struct stat *st, char *s)
 	else
 		s[2] = '-';
 }
+
 void	bit_set_other(struct stat *st, char *s)
 {
 	if ((st->st_mode & S_IRWXO) & S_IROTH)
@@ -85,10 +91,12 @@ void	bit_set_other(struct stat *st, char *s)
 	else
 		s[2] = '-';
 }
+
 char	*get_permission(const char *name)
 {
 	char		*str;
 	struct stat	st;
+
 	lstat(name, &st);
 	str = malloc(12);
 	str[0] = get_type(name);
