@@ -62,8 +62,6 @@ int	cmp(char *s1, char *s2)
 	i2 = 0;
 	t1 = ft_strdup(s1);
 	t2 = ft_strdup(s2);
-	all_low(t1);
-	all_low(t2);
 	if (*t1 == '.')
 		i1 = 1;
 	if (*t2 == '.')

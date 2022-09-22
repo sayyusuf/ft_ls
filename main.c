@@ -24,27 +24,8 @@ t_ls	*ls_dup(const t_ls *ls, char *str)
 
 char	*get_attr(char *path)
 {
-	ssize_t	bufflen;
-	char	*key;
-	char	*buff;
-
-	bufflen = listxattr(path, NULL, 0);
-	if (bufflen < 1)
-		return (ft_strdup(""));
-	key = malloc(bufflen + 1);
-	bufflen = listxattr(path, key, bufflen);
-	key[bufflen] = '\0';
-	bufflen = getxattr(path, key, NULL, 0);
-	if (bufflen < 1)
-	{
-		free(key);
-		return (ft_strdup(""));
-	}
-	buff = malloc(bufflen + 1);
-	bufflen = getxattr(path, key, buff, bufflen);
-	buff[bufflen] = '\0';
-	free(key);
-	return (buff);
+	(void) path;
+	return (ft_strdup(""));
 }
 
 char	*get_time(time_t time)
@@ -57,7 +38,7 @@ char	*get_time(time_t time)
 	s = ft_strtrim(ctime(&time), "\n");
 	s1 = ft_split(s, ' ');
 	free(s);
-	tmp = ft_str3join(s1[1], " ", s1[2]);
+	tmp = ft_str3join(s1[2], " ", s1[1]);
 	s = ft_str3join(tmp, " ", s1[3]);
 	free(tmp);
 	i = 0;
@@ -104,7 +85,7 @@ int	main(int ac, char *av[], char *env[])
 	i = 0;
 	while (i < targ->len)
 	{
-		open_dir(targ->array[i++], flag, !env);
+		open_dir(targ->array[i++], flag, !env, targ->len);
 		env = NULL;
 	}
 	argv_destroy(targ, (void (*)(void *))ls_destroy);

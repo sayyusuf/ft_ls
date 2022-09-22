@@ -57,6 +57,8 @@ void	look_algn(size_t *alg, t_argv *list)
 			alg[4] = ft_strlen(inf->size);
 		if (alg[5] < ft_strlen(inf->date))
 			alg[5] = ft_strlen(inf->date);
+		if (alg[6] < ft_strlen(inf->link_count))
+			alg[6] = ft_strlen(inf->link_count);
 		++i;
 	}
 }
@@ -98,6 +100,7 @@ void	do_algn(size_t *alg, t_argv *list)
 		inf->group = algn_str(alg[3], inf->group, 0);
 		inf->size = algn_str(alg[4], inf->size, 0);
 		inf->date = algn_str(alg[5], inf->date, 0);
+		inf->link_count = algn_str(alg[6], inf->link_count, 0);
 		++i;
 	}
 }
@@ -109,20 +112,22 @@ void	print_list(const t_argv *list, t_ls *ls)
 	t_argv	*nlist;
 	size_t	*algn;
 
-	algn = (size_t [6]){0};
+	algn = (size_t [7]){0};
 	i = 0;
 	while (i < list->len && !ls->l_flag)
-		ft_printf("%s\n", (char *)list->array[i++]);
+		ft_printf("%s ", (char *)list->array[i++]);
+	if (!ls->l_flag)
+		ft_printf("\n");
 	if (!ls->l_flag)
 		return ;
 	nlist = l_operation(list, ls);
 	look_algn(algn, nlist);
 	do_algn(algn, nlist);
-	ft_printf("total %d\n", ls->block_s / 2);
+	ft_printf("total %d\n", ls->block_s);
 	while (i < nlist->len)
 	{
 		inf = nlist->array[i++];
-		ft_printf("%s%s %s %s %s %s %s %s\n", inf->perm, inf->attr,
+		ft_printf("%s%s  %s %s  %s  %s %s %s\n", inf->perm, inf->attr,
 			inf->link_count, inf->user, inf->group,
 			inf->size, inf->date, inf->name);
 	}

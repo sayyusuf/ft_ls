@@ -83,7 +83,7 @@ void	do_algn(size_t *alg, t_argv *list);
 void	print_list(const t_argv *list, t_ls *ls);
 
 int		open_br(t_ls *ls, t_argv *list);
-int		open_dir(t_ls *ls, int flag, int flag2);
+int		open_dir(t_ls *ls, int flag, int flag2, size_t len);
 
 t_ls	*ls_dup(const t_ls *ls, char *str);
 char	*get_attr(char *path);

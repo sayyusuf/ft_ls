@@ -17,17 +17,17 @@ char	get_type(const char *str)
 	struct stat	st;
 
 	lstat(str, &st);
-	if ((st.st_mode & __S_IFMT) == __S_IFBLK)
+	if ((st.st_mode & S_IFMT) == S_IFBLK)
 		return ('b');
-	if ((st.st_mode & __S_IFMT) == __S_IFCHR)
+	if ((st.st_mode & S_IFMT) == S_IFCHR)
 		return ('c');
-	if ((st.st_mode & __S_IFMT) == __S_IFDIR)
+	if ((st.st_mode & S_IFMT) == S_IFDIR)
 		return ('d');
-	if ((st.st_mode & __S_IFMT) == __S_IFIFO)
+	if ((st.st_mode & S_IFMT) == S_IFIFO)
 		return ('p');
-	if ((st.st_mode & __S_IFMT) == __S_IFLNK)
+	if ((st.st_mode & S_IFMT) == S_IFLNK)
 		return ('l');
-	if ((st.st_mode & __S_IFMT) == __S_IFSOCK)
+	if ((st.st_mode & S_IFMT) == S_IFSOCK)
 		return ('l');
 	return ('-');
 }

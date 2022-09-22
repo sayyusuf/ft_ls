@@ -35,11 +35,10 @@ int	open_br(t_ls *ls, t_argv *list)
 
 void	look_nl(t_argv *list, t_ls *ls, int flag, int flag2)
 {
-	if ((flag || ls->br_flag) && flag2)
+	if ((ls->br_flag) && flag2)
 		ft_printf("\n");
-	if (flag || ls->br_flag)
+	if ((flag || ls->br_flag) && list->len > 3)
 		ft_printf("%s:\n", ls->name);
-	print_list(list, ls);
 }
 
 int	error_masg(t_ls *ls)
@@ -53,7 +52,7 @@ int	error_masg(t_ls *ls)
 	return (2);
 }
 
-int	open_dir(t_ls *ls, int flag, int flag2)
+int	open_dir(t_ls *ls, int flag, int flag2, size_t len)
 {
 	DIR				*dir;
 	struct dirent	*dd;
@@ -70,7 +69,9 @@ int	open_dir(t_ls *ls, int flag, int flag2)
 		dd = readdir(dir);
 	}
 	list = sort_proc(ls, list);
-	look_nl(list, ls, flag, flag2);
+	if (len > 1)
+		look_nl(list, ls, flag, flag2);
+	print_list(list, ls);
 	closedir(dir);
 	if (ls->br_flag)
 		open_br(ls, list);
