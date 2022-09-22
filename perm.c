@@ -74,7 +74,7 @@ void	bit_set_other(struct stat *st, char *s)
 		s[1] = 'w';
 	else
 		s[1] = '-';
-	if ((st->st_mode & S_IRWXG) & S_IXOTH)
+	if ((st->st_mode & S_IRWXO) & S_IXOTH)
 		s[2] = 'x';
 	else
 		s[2] = '-';
