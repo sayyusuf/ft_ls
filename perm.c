@@ -68,8 +68,6 @@ void	bit_set_group(struct stat *st, char *s)
 		s[2] = '-';
 	if ((st->st_mode & S_ISGID))
 		s[2] = 'S';
-	else
-		s[2] = '-';
 }
 
 void	bit_set_other(struct stat *st, char *s)
@@ -88,8 +86,6 @@ void	bit_set_other(struct stat *st, char *s)
 		s[2] = '-';
 	if ((st->st_mode & S_ISTXT))
 		s[2] = 'T';
-	else
-		s[2] = '-';
 }
 
 char	*get_permission(const char *name)

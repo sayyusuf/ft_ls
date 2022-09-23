@@ -6,39 +6,42 @@
 /*   By: ysay <ysay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 22:44:25 by ysay              #+#    #+#             */
-/*   Updated: 2022/09/22 16:23:42 by ysay             ###   ########.fr       */
+/*   Updated: 2022/09/23 16:26:45 by ysay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
+typedef struct s_dummy
+{
+	size_t	i;
+	size_t	index;
+}	t_dummy;
+
 t_argv	*sort_time(t_argv *list)
 {
 	struct stat		st;
-	struct timeval	t;
-	size_t			index;
-	size_t			i;
+	struct timespec	t;
+	t_dummy			dm;
 	t_argv			*nlist;
 
 	nlist = argv_new(NULL, NULL);
 	while (list->len)
 	{
-		i = 0;
-		index = 0;
-		t = (struct timeval){0};
-		while (i < list->len)
+		dm = (t_dummy){0};
+		t = (struct timespec){0};
+		while (dm.i < list->len)
 		{
-			lstat(list->array[i++], &st);
+			lstat(list->array[dm.i++], &st);
 			if (st.st_mtime > t.tv_sec || (st.st_mtime == t.tv_sec
-					&& st.st_mtimespec.tv_nsec / 1000 > t.tv_usec))
+					&& st.st_mtimespec.tv_nsec > t.tv_nsec))
 			{
-				t.tv_sec = st.st_mtimespec.tv_sec;
-				t.tv_usec = st.st_mtimespec.tv_sec / 1000;
-				index = i - 1;
+				t = st.st_mtimespec;
+				dm.index = dm.i - 1;
 			}
 		}
-		argv_push(nlist, list->array[index]);
-		argv_del_one(list, index, NULL);
+		argv_push(nlist, list->array[dm.index]);
+		argv_del_one(list, dm.index, NULL);
 	}
 	return (nlist);
 }
